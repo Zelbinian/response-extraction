@@ -16,12 +16,12 @@ extractResponses <- function(filename = "response", dir, csv) {
     # the output from Google Sheets makes colnames hard to read, this fixes it
     colnames(data) <- gsub(".", " ", colnames(data), fixed = TRUE)
     
-    # knowing the number of questions helps us cut the result up into separate files
-    #numQs <- length(colnames(data))
-    
-    for(row in nrow(data)) {
+    for(row in 1:nrow(data)) {
+        # makes use of recycling in R to match up the column names (the questions) with
+        # each row of responses
         fileData <- paste(colnames(data), "------", data[row,], sep = "\n")
-        cat(fileData, file = paste0(dir,filename,row,".txt"))
+        fileName <- paste0(dir,'/',filename,row,".txt")
+        cat(fileData, file = fileName, sep = "\n\n")
     }
     
     # makes use of recycling in R to match up the column names (the questions) with
