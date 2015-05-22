@@ -8,7 +8,7 @@
 # @dir - The directory the files should be placed in
 # @csv - The data to read from
 #
-extractResponses <- function(filename = "response", dir, csv) {
+extractResponses <- function(outputName = "response", dir, csv) {
     
     # reading the data in as a matrix so we can make the data row-wise
     data <- as.matrix(read.csv(csv))
@@ -20,7 +20,7 @@ extractResponses <- function(filename = "response", dir, csv) {
         # makes use of recycling in R to match up the column names (the questions) with
         # each row of responses
         fileData <- paste(colnames(data), "------", data[row,], sep = "\n")
-        fileName <- paste0(dir,'/',filename,row,".txt")
+        fileName <- paste0(dir,'/',outputName,row,".txt")
         cat(fileData, file = fileName, sep = "\n\n")
     }
     
