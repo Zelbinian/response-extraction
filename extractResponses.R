@@ -19,10 +19,13 @@ extractResponses <- function(filename = "response", dir, csv) {
     # knowing the number of questions helps us cut the result up into separate files
     #numQs <- length(colnames(data))
     
-    
+    for(row in nrow(data)) {
+        fileData <- paste(colnames(data), "------", data[row,], sep = "\n")
+        cat(fileData, file = paste0(dir,filename,row,".txt"))
+    }
     
     # makes use of recycling in R to match up the column names (the questions) with
     # each row of responses
-    dataByRow <- paste(colnames(data), "-------", t(data), sep = "\n")
+    #dataByRow <- paste(colnames(data), "-------", t(data), sep = "\n")
     
 }
