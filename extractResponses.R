@@ -8,10 +8,18 @@
 # @dir - The directory the files should be placed in
 # @csv - The data to read from
 #
-extractResponses <- function(dir, csv) {
+extractResponses <- function(filename = "response", dir, csv) {
     
     # reading the data in as a matrix so we can make the data row-wise
     data <- as.matrix(read.csv(csv))
+    
+    # the output from Google Sheets makes colnames hard to read, this fixes it
+    colnames(data) <- gsub(".", " ", colnames(data), fixed = TRUE)
+    
+    # knowing the number of questions helps us cut the result up into separate files
+    #numQs <- length(colnames(data))
+    
+    
     
     # makes use of recycling in R to match up the column names (the questions) with
     # each row of responses
