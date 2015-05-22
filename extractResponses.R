@@ -15,6 +15,6 @@ extractResponses <- function(dir, csv) {
     
     # makes use of recycling in R to match up the column names (the questions) with
     # each row of responses
-    dataByRow <- paste(colnames(qdata.m), "-------", t(qdata.m), sep = "\n")
+    dataByRow <- paste(colnames(data), "-------", t(data), sep = "\n")
     
 }
